@@ -4,11 +4,12 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { webcrypto as crypto } from 'node:crypto';
 const PW = readFileSync(new URL('.key', import.meta.url), 'utf8').trim();
 // 別ページは環境変数で: SRC=… OUT=radio/index.html TITLE=… DESC=… P=../ node build.mjs
-const SRC = process.env.SRC || '/Users/morikawa/Desktop/齋藤淳さん_note作戦/index.html';
+const SRC = process.env.SRC || '/Users/morikawa/Desktop/👤 お客さま・個別案件/齋藤淳さん_note作戦/index.html';
 const OUT = process.env.OUT || 'index.html';
 const TITLE = process.env.TITLE || 'noteを事業にする作戦';
 const DESC = process.env.DESC || '11月6日のご相談のまとめと、これからの作戦です（森川より）';
 const P = process.env.P || '';
+const OGIMG = process.env.OGIMG || 'img/mascot_invite.webp';
 const URL_ = 'https://mm738966m-boop.github.io/saito-share/';
 const PAGE_URL = URL_ + (OUT === 'index.html' ? '' : OUT.replace(/index\.html$/, ''));
 const b64 = u8 => Buffer.from(u8).toString('base64');
@@ -30,7 +31,8 @@ const shell = `<!doctype html>
 <meta property="og:title" content="${TITLE}">
 <meta property="og:description" content="${DESC}">
 <meta property="og:url" content="${PAGE_URL}">
-<meta property="og:image" content="${URL_}img/mascot_invite.webp">
+<meta property="og:image" content="${URL_}${OGIMG}">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
